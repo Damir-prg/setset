@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { questions } from './questions';
 import { Box, Button, Radio, RadioGroup, FormControlLabel, Typography, Paper, MobileStepper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Stack } from '@mui/material';
 
-const TestQuiz = () => {
+const TestQuiz = ({ onLogout }) => {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
   const [finished, setFinished] = useState(false);
@@ -33,6 +33,16 @@ const TestQuiz = () => {
   if (finished) {
     return (
       <Box p={1} maxWidth={600} mx="auto" minHeight="100vh" display="flex" flexDirection="column" justifyContent="center">
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+          <Button 
+            variant="outlined" 
+            color="secondary" 
+            onClick={onLogout}
+            size="small"
+          >
+            Выйти
+          </Button>
+        </Box>
         <Typography variant="h5" gutterBottom align="center">Спасибо за прохождение теста!</Typography>
         <Typography variant="body1" align="center" mb={2}>Ваши ответы сохранены.</Typography>
         <TableContainer component={Paper} sx={{ mb: 2 }}>
@@ -76,6 +86,16 @@ const TestQuiz = () => {
 
   return (
     <Box p={1} maxWidth={480} mx="auto" minHeight="100vh" display="flex" flexDirection="column" justifyContent="center">
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+        <Button 
+          variant="outlined" 
+          color="secondary" 
+          onClick={onLogout}
+          size="small"
+        >
+          Выйти
+        </Button>
+      </Box>
       <Paper elevation={2} sx={{ p: 2, mb: 2 }}>
         <Typography variant="subtitle2" color="text.secondary" gutterBottom>{q.section}</Typography>
         <Typography variant="h6" gutterBottom>{q.text}</Typography>
